@@ -18,3 +18,6 @@ This repo contains code for a simple Airflow pipeline to [predict student math a
 - **data/**: Directory containing the transformed data for model training and testing.
 - **model/**: Directory containing the pickled trained model.
 - **results/**: Directory containing the final predictions and model metrics. 
+
+DAG overview:
+![alt text](https://user-images.githubusercontent.com/47151798/154866248-233a0959-b508-4bca-8e09-cf519a1532b9.png)
