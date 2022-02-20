@@ -10,7 +10,7 @@ This repo contains code for a simple Airflow pipeline to [predict student math a
     - **train_model.py**: Trains the model using the best params, pickles it, and saves it to the `model/` directory.
     - **predict.py**: Loads the trained model and predicts the targets on the test data. Saves the predictions and model metrics to the `results/` directory.
     - **configs.yaml**: Config file
-    - **tests/**:
+    - **tests/**: Some basic unit tests. TODO expand on these.
         - **test_data_prep.py**
         - **test_hyperparam_tune.py**
         - **test_train_model.py**

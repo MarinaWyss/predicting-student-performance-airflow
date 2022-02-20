@@ -56,3 +56,4 @@ def predict_and_evaluate(configs: dict):
     metrics.to_csv(configs['metrics_path'], index=False)
 
     logging.info("Pipeline complete.")
+    return test_df, metrics 
