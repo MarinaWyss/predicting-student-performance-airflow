@@ -44,28 +44,28 @@ with DAG(
         op_kwargs={'configs': configs}
     )
 
-    tune_hyperparams = PythonOperator(
+    tune_hyperparameters = PythonOperator(
         task_id='tune_hyperparams',
-        pyton_callable=tune_hyperparams,
+        python_callable=tune_hyperparams,
         op_kwargs={'configs': configs}
     )
 
-    train_and_save_model = PythonOperator(
+    train = PythonOperator(
         task_id='train_and_save_model',
-        pyton_callable=train_and_save_model,
+        python_callable=train_and_save_model,
         op_kwargs={
             'configs': configs,
             'params': get_best_params()
         }
     )
 
-    predict_and_evaluate = PythonOperator(
+    predict = PythonOperator(
         task_id='predict_and_evaluate',
-        pyton_callable=predict_and_evaluate,
+        python_callable=predict_and_evaluate,
         op_kwargs={'configs': configs}
     )
 
 # Task config ------------------------------------------------------------------------------------------
-    download_and_prep_data.set_downstream(tune_hyperparams)
-    tune_hyperparams.set_downstream(train_and_save_model)
-    train_and_save_model.set_downstream(predict_and_evaluate)
+    download_and_prep_data.set_downstream(tune_hyperparameters)
+    tune_hyperparameters.set_downstream(train)
+    train.set_downstream(predict)
