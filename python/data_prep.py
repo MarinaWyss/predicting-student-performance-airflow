@@ -35,7 +35,7 @@ def prepare_data(configs: dict) -> pd.DataFrame:
 
     logging.info("Label encoding features.")
     for c in configs['features']:
-        data[c] = le.fit_transform(data[c])
+        data[c] = LabelEncoder().fit_transform(data[c])
 
     logging.info("Doing the train-test split.")
     train_df, test_df = train_test_split(

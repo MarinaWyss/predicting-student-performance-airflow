@@ -8,7 +8,7 @@ from sklearn.metrics import mean_absolute_error
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)-8s %(message)s')
 
 
-def predict_and_evaluate(configs: dict) -> csv:
+def predict_and_evaluate(configs: dict):
     """Loads the trained model and predicts on the test data. Then, 
     saves the predictions and model performance metrics.
 
@@ -23,9 +23,11 @@ def predict_and_evaluate(configs: dict) -> csv:
     
     logging.info("Predicting on test data.")
     preds = model.fit(test_df[configs['features']])
+
     pred_df = pd.DataFrame(
         preds,
-        columns=['pred_math_score', 'pred_writing_score']
+        # Naming the columns this way in case the order changes at some point
+        columns=[f'pred_{test_df[targets].columns[0]}', f'pred_{test_df[targets].columns[1]}']
     )
     test_df.loc[:, 'pred_math_score'] = pred_df['pred_math_score'].values
     test_df.loc[:, 'pred_writing_score'] = pred_df['pred_writing_score'].values
