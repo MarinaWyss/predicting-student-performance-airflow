@@ -1,0 +1,20 @@
+kaggle_data_path: https://www.kaggle.com/spscientist/students-performance-in-exams?select=StudentsPerformance.csv
+train_data_path: data/train_data.csv
+test_data_path: data/test_data.csv
+
+features: 
+  - gender
+  - ethnicity
+  - parent_education
+  - lunch
+  - test_prep
+
+targets:
+  - math_score
+  - writing_score
+
+random_state: 42
+test_size: 0.3
+
+param_distributions:
+  
