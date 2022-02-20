@@ -49,3 +49,4 @@ def prepare_data(configs: dict) -> pd.DataFrame:
     test_df.to_csv(configs['test_data_path'], index=False)
 
     logging.info("Data prep done.")
+    return train_df, test_df
