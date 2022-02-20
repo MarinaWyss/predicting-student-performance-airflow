@@ -21,6 +21,10 @@ default_args = {
     'retry_delay': timedelta(minutes=5)
 }
 
+def get_best_params(ti):
+    """Gets the best params from the tuning step"""
+    return ti.xcom_pull(key='return_value', task_ids='tune_hyperparams')
+
 # DAG config --------------------------------------------------------------------------------------------
 with DAG(
     dag_id='student_performance_dag',
@@ -47,7 +51,10 @@ with DAG(
     train_and_save_model = PythonOperator(
         task_id='train_and_save_model',
         pyton_callable=train_and_save_model,
-        op_kwargs={'configs': configs}
+        op_kwargs={
+            'configs': configs,
+            'params': get_best_params()
+        }
     )
 
     predict_and_evaluate = PythonOperator(
